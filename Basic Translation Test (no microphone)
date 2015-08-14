@@ -1,0 +1,33 @@
+from googletrans import translator
+###finding the lanagauge###
+print "recognising the langague"
+lan = translator.detect('How are you my friend')
+print lan
+lan = translator.detect('Que fais-tu dans la vie?')
+print lan
+
+###Translate into English###
+phrase = translator.translate('Que fais-tu dans la vie?')
+print phrase
+
+###Translate into another langague###
+phrase2 = translator.translate('Que fais-tu dans la vie?', dest='eo')
+print phrase2
+
+###CONVERT THE PHRASE TO ENGLISH AND THEN PRINT IT###
+phrase2 = translator.translate('Bonjour, bonjour Que fais-tu dans la vie?')
+print phrase2
+
+read = str(phrase2) ###convert to a string
+print type(read)
+
+sentance = read.find('text') ###find the phrase
+print sentance
+
+
+end = read.find('?') ###find the end of the phrase
+print end
+
+final_phrase = read[sentance+5 : end] ###print the final phrase
+print final_phrase
+
