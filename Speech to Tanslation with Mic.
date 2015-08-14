@@ -1,0 +1,36 @@
+#-*- coding: utf-8-*-
+
+##enables all letters to be added
+from googletrans import translator
+### Py speech test ###
+import pyaudio                                 # NOTE: this requires PyAudio because it uses the Microphone class
+import speech_recognition as sr
+import unicodedata
+
+r = sr.Recognizer()
+print ("Please say your phrase")
+with sr.Microphone() as source:                # use the default microphone as the audio source
+    audio = r.listen(source)                   # listen for the first phrase and extract it into audio data
+
+####Convert speech to text
+try:
+    print("You said: " + r.recognize(audio))    # recognize speech using Google Speech Recognition
+    microphone_input  = r.recognize(audio)     # variable for storing speech to text
+except LookupError:                            # speech is unintelligible
+    print("Could not understand audio")
+    
+###Translate English into French or another Language##
+#-*- coding: utf-8-*-
+phrase2 = translator.translate(microphone_input, dest='de')
+#print phrase2
+###Pull out key phrase, remove metadata###
+read2 = str(phrase2) ###convert to a string
+# print type(read) ###test
+sentance2 = read2.find('text') ###find the phrase
+# print sentance ###test
+end_of_phrase2 = read2.find(' pronunciation') ###find the end of the phrase
+# print end_of_phrase ###test
+final_phrase2 = read2[sentance2+5 : end_of_phrase2] ###print the final phrase
+print final_phrase2 ###test
+
+
